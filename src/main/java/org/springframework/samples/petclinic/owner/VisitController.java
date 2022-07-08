@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.newrelic.api.agent.NewRelic;
+
 /**
  * @author Juergen Hoeller
  * @author Ken Krebs
@@ -80,6 +82,10 @@ class VisitController {
 	@PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
 	public String processNewVisitForm(@ModelAttribute Owner owner, @PathVariable int petId, @Valid Visit visit,
 			BindingResult result) {
+		// Add customer attribute
+		NewRelic.addCustomParameter("ownerId", owner.getId());
+		NewRelic.addCustomParameter("petId", petId);
+
 		if (result.hasErrors()) {
 			return "pets/createOrUpdateVisitForm";
 		}
