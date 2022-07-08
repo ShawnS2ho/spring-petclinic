@@ -11,12 +11,27 @@ Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) applicatio
 
 ```
 git clone https://github.com/spring-projects/spring-petclinic.git
+
+##Running petclinic without NewRelic Agent
 cd spring-petclinic
 ./mvnw package
 java -jar target/*.jar
+
+##Running petclinic with NewRelic Agent
+Firstly you need to setup envrionment variables (This is a one-time setup).
+
+vi ~/.bashrc
+そしてファイルに下記２行を追加して保存。（緑の箇所は各自の環境に合わせて記載）
+export NEW_RELIC_LICENSE_KEY=“your license key”
+export NEW_RELIC_APP_NAME=“PetClinic-SS”
+
+Then you can execute below 3 lines commands
+cd spring-petclinic
+./mvnw package
+java -javaagent:/path/to/spring-petclinic/target/newrelic/newrelic.jar -jar target/*.jar &
 ```
 
-You can then access petclinic here: http://localhost:8080/
+You can then access petclinic here: http://EXTERNAL-IP:8080/
 
 <img width="1042" alt="petclinic-screenshot" src="https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png">
 
