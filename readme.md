@@ -21,9 +21,11 @@ java -jar target/*.jar
 Firstly you need to setup envrionment variables (This is a one-time setup).
 
 vi ~/.bashrc
-そしてファイルに下記２行を追加して保存。（緑の箇所は各自の環境に合わせて記載）
+
+Add below 2 lines to the file then save & exit.
+
 export NEW_RELIC_LICENSE_KEY=“your license key”
-export NEW_RELIC_APP_NAME=“PetClinic-SS”
+export NEW_RELIC_APP_NAME=“Your-Application-Name”
 
 Then you can execute below 3 lines commands
 cd spring-petclinic
